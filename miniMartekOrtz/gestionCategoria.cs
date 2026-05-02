@@ -12,9 +12,22 @@ namespace miniMartekOrtz
 {
     public partial class gestionCategoria : Form
     {
-        public gestionCategoria()
+        
+        private Form menuPrincipal;
+
+        
+        public gestionCategoria(Form menu)
         {
             InitializeComponent();
+            
+            this.menuPrincipal = menu;
+        }
+
+        // Ejemplo de cómo usarlo para volver
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.menuPrincipal.Show(); 
+            this.Close(); 
         }
     }
 }

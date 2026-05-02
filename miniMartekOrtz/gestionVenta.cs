@@ -12,9 +12,12 @@ namespace miniMartekOrtz
 {
     public partial class gestionVenta : Form
     {
-        public gestionVenta()
+        private Form menuPrincipal;
+
+        public gestionVenta(Form menu)
         {
             InitializeComponent();
+            this.menuPrincipal = menu;
         }
     }
 }

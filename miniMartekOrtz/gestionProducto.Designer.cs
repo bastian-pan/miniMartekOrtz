@@ -50,7 +50,7 @@
             this.btnBorrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrar.ForeColor = System.Drawing.Color.White;
-            this.btnBorrar.Location = new System.Drawing.Point(348, 300);
+            this.btnBorrar.Location = new System.Drawing.Point(392, 323);
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(89, 29);
             this.btnBorrar.TabIndex = 17;
@@ -63,7 +63,7 @@
             this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.White;
-            this.btnEditar.Location = new System.Drawing.Point(224, 300);
+            this.btnEditar.Location = new System.Drawing.Point(268, 323);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(89, 29);
             this.btnEditar.TabIndex = 16;
@@ -73,7 +73,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(224, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(269, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(298, 260);
             this.dataGridView1.TabIndex = 15;
@@ -82,7 +82,7 @@
             // 
             this.btnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVolver.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.Location = new System.Drawing.Point(13, 341);
+            this.btnVolver.Location = new System.Drawing.Point(12, 400);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(64, 29);
             this.btnVolver.TabIndex = 14;
@@ -95,7 +95,7 @@
             this.btnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregar.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Location = new System.Drawing.Point(100, 300);
+            this.btnAgregar.Location = new System.Drawing.Point(144, 323);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(89, 29);
             this.btnAgregar.TabIndex = 13;
@@ -104,7 +104,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(17, 54);
+            this.txtNombre.Location = new System.Drawing.Point(62, 54);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(153, 20);
             this.txtNombre.TabIndex = 11;
@@ -113,7 +113,7 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(36, 34);
+            this.lblNombre.Location = new System.Drawing.Point(81, 34);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(56, 17);
             this.lblNombre.TabIndex = 9;
@@ -123,7 +123,7 @@
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(36, 86);
+            this.lblPrecio.Location = new System.Drawing.Point(81, 86);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(46, 17);
             this.lblPrecio.TabIndex = 18;
@@ -133,7 +133,7 @@
             // 
             this.lblStock.AutoSize = true;
             this.lblStock.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.Location = new System.Drawing.Point(36, 138);
+            this.lblStock.Location = new System.Drawing.Point(81, 138);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(42, 17);
             this.lblStock.TabIndex = 19;
@@ -143,7 +143,7 @@
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(36, 190);
+            this.lblCategoria.Location = new System.Drawing.Point(81, 190);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(69, 17);
             this.lblCategoria.TabIndex = 20;
@@ -152,14 +152,14 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(17, 106);
+            this.txtPrecio.Location = new System.Drawing.Point(62, 106);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(153, 20);
             this.txtPrecio.TabIndex = 21;
             // 
             // txtStock
             // 
-            this.txtStock.Location = new System.Drawing.Point(17, 158);
+            this.txtStock.Location = new System.Drawing.Point(62, 158);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(153, 20);
             this.txtStock.TabIndex = 22;
@@ -167,7 +167,7 @@
             // cmbCategorias
             // 
             this.cmbCategorias.FormattingEnabled = true;
-            this.cmbCategorias.Location = new System.Drawing.Point(29, 210);
+            this.cmbCategorias.Location = new System.Drawing.Point(74, 210);
             this.cmbCategorias.Name = "cmbCategorias";
             this.cmbCategorias.Size = new System.Drawing.Size(104, 21);
             this.cmbCategorias.TabIndex = 23;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(535, 382);
+            this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.cmbCategorias);
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.txtPrecio);

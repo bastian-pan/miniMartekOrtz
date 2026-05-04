@@ -13,20 +13,16 @@ namespace miniMartekOrtz
 {
     public partial class gestionProducto : Form
     {
-        
         private Form menuPrincipal;
 
-        
         public gestionProducto(Form menu)
         {
             InitializeComponent();
-            
             this.menuPrincipal = menu;
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -83,35 +79,18 @@ namespace miniMartekOrtz
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-
         }
 
         private void gestionProducto_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet.Producto' Puede moverla o quitarla según sea necesario.
             this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet.Producto);
-            // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet.Categoria' Puede moverla o quitarla según sea necesario.
             this.categoriaTableAdapter.Fill(this.miniMarketOrtzDataSet.Categoria);
-
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.menuPrincipal.Show();
             this.Close();
-        }
-
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-            this.menuPrincipal.Show();
-            this.Close();
-        }
-
-        private void gestionProducto_Load(object sender, EventArgs e)
-        {
-            // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet3.Categoria' Puede moverla o quitarla según sea necesario.
-            this.categoriaTableAdapter.Fill(this.miniMarketOrtzDataSet3.Categoria);
-
         }
     }
 }

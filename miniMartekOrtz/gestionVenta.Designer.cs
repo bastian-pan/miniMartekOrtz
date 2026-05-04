@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.components = new System.ComponentModel.Container();
+            this.cmbProducto = new System.Windows.Forms.ComboBox();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
+            this.dgvCarrito = new System.Windows.Forms.DataGridView();
+            this.idProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idCategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.miniMarketOrtzDataSet1 = new miniMartekOrtz.MiniMarketOrtzDataSet1();
+            this.dgvVenta = new System.Windows.Forms.DataGridView();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.lblProducto = new System.Windows.Forms.Label();
@@ -41,41 +48,92 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.productoTableAdapter = new miniMartekOrtz.MiniMarketOrtzDataSet1TableAdapters.ProductoTableAdapter();
+            this.miniMarketOrtzDataSet2 = new miniMartekOrtz.MiniMarketOrtzDataSet2();
+            this.productoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.productoTableAdapter1 = new miniMartekOrtz.MiniMarketOrtzDataSet2TableAdapters.ProductoTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cmbProducto
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(107, 26);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(104, 21);
-            this.comboBox1.TabIndex = 0;
+            this.cmbProducto.DataSource = this.productoBindingSource1;
+            this.cmbProducto.FormattingEnabled = true;
+            this.cmbProducto.Location = new System.Drawing.Point(107, 26);
+            this.cmbProducto.Name = "cmbProducto";
+            this.cmbProducto.Size = new System.Drawing.Size(104, 21);
+            this.cmbProducto.TabIndex = 0;
             // 
-            // numericUpDown1
+            // nudCantidad
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(371, 30);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 1;
+            this.nudCantidad.Location = new System.Drawing.Point(371, 30);
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(120, 20);
+            this.nudCantidad.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvCarrito
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 61);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(299, 170);
-            this.dataGridView1.TabIndex = 2;
+            this.dgvCarrito.AutoGenerateColumns = false;
+            this.dgvCarrito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCarrito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idProductoDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.precioDataGridViewTextBoxColumn,
+            this.idCategoriaDataGridViewTextBoxColumn});
+            this.dgvCarrito.DataSource = this.productoBindingSource;
+            this.dgvCarrito.Location = new System.Drawing.Point(10, 61);
+            this.dgvCarrito.Name = "dgvCarrito";
+            this.dgvCarrito.Size = new System.Drawing.Size(299, 170);
+            this.dgvCarrito.TabIndex = 2;
             // 
-            // dataGridView2
+            // idProductoDataGridViewTextBoxColumn
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(332, 61);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(345, 170);
-            this.dataGridView2.TabIndex = 3;
+            this.idProductoDataGridViewTextBoxColumn.DataPropertyName = "IdProducto";
+            this.idProductoDataGridViewTextBoxColumn.HeaderText = "IdProducto";
+            this.idProductoDataGridViewTextBoxColumn.Name = "idProductoDataGridViewTextBoxColumn";
+            this.idProductoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // precioDataGridViewTextBoxColumn
+            // 
+            this.precioDataGridViewTextBoxColumn.DataPropertyName = "Precio";
+            this.precioDataGridViewTextBoxColumn.HeaderText = "Precio";
+            this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
+            // 
+            // idCategoriaDataGridViewTextBoxColumn
+            // 
+            this.idCategoriaDataGridViewTextBoxColumn.DataPropertyName = "IdCategoria";
+            this.idCategoriaDataGridViewTextBoxColumn.HeaderText = "IdCategoria";
+            this.idCategoriaDataGridViewTextBoxColumn.Name = "idCategoriaDataGridViewTextBoxColumn";
+            // 
+            // productoBindingSource
+            // 
+            this.productoBindingSource.DataMember = "Producto";
+            this.productoBindingSource.DataSource = this.miniMarketOrtzDataSet1;
+            // 
+            // miniMarketOrtzDataSet1
+            // 
+            this.miniMarketOrtzDataSet1.DataSetName = "MiniMarketOrtzDataSet1";
+            this.miniMarketOrtzDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dgvVenta
+            // 
+            this.dgvVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVenta.Location = new System.Drawing.Point(332, 61);
+            this.dgvVenta.Name = "dgvVenta";
+            this.dgvVenta.Size = new System.Drawing.Size(345, 170);
+            this.dgvVenta.TabIndex = 3;
             // 
             // btnAgregar
             // 
@@ -89,6 +147,7 @@
             this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnVolver
             // 
@@ -99,6 +158,7 @@
             this.btnVolver.TabIndex = 5;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // lblProducto
             // 
@@ -171,6 +231,7 @@
             this.btnRegistrar.TabIndex = 11;
             this.btnRegistrar.Text = "Registrar venta";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // btnEliminar
             // 
@@ -184,6 +245,24 @@
             this.btnEliminar.TabIndex = 12;
             this.btnEliminar.Text = "Eliminar venta";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            // 
+            // productoTableAdapter
+            // 
+            this.productoTableAdapter.ClearBeforeFill = true;
+            // 
+            // miniMarketOrtzDataSet2
+            // 
+            this.miniMarketOrtzDataSet2.DataSetName = "MiniMarketOrtzDataSet2";
+            this.miniMarketOrtzDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // productoBindingSource1
+            // 
+            this.productoBindingSource1.DataMember = "Producto";
+            this.productoBindingSource1.DataSource = this.miniMarketOrtzDataSet2;
+            // 
+            // productoTableAdapter1
+            // 
+            this.productoTableAdapter1.ClearBeforeFill = true;
             // 
             // gestionVenta
             // 
@@ -199,15 +278,20 @@
             this.Controls.Add(this.lblProducto);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dgvVenta);
+            this.Controls.Add(this.dgvCarrito);
+            this.Controls.Add(this.nudCantidad);
+            this.Controls.Add(this.cmbProducto);
             this.Name = "gestionVenta";
             this.Text = "gestionVenta";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.Load += new System.EventHandler(this.gestionVenta_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCarrito)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,10 +299,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ComboBox cmbProducto;
+        private System.Windows.Forms.NumericUpDown nudCantidad;
+        private System.Windows.Forms.DataGridView dgvCarrito;
+        private System.Windows.Forms.DataGridView dgvVenta;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Label lblProducto;
@@ -228,5 +312,15 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnEliminar;
+        private MiniMarketOrtzDataSet1 miniMarketOrtzDataSet1;
+        private System.Windows.Forms.BindingSource productoBindingSource;
+        private MiniMarketOrtzDataSet1TableAdapters.ProductoTableAdapter productoTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProductoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoriaDataGridViewTextBoxColumn;
+        private MiniMarketOrtzDataSet2 miniMarketOrtzDataSet2;
+        private System.Windows.Forms.BindingSource productoBindingSource1;
+        private MiniMarketOrtzDataSet2TableAdapters.ProductoTableAdapter productoTableAdapter1;
     }
 }

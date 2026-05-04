@@ -100,5 +100,18 @@ namespace miniMartekOrtz
             this.menuPrincipal.Show();
             this.Close();
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.menuPrincipal.Show();
+            this.Close();
+        }
+
+        private void gestionProducto_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet3.Categoria' Puede moverla o quitarla según sea necesario.
+            this.categoriaTableAdapter.Fill(this.miniMarketOrtzDataSet3.Categoria);
+
+        }
     }
 }

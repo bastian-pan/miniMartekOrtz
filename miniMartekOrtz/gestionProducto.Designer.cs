@@ -54,11 +54,6 @@
             this.productoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.categoriaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBorrar
@@ -230,8 +225,6 @@
             // 
             // cmbCategorias
             // 
-            this.cmbCategorias.DataSource = this.categoriaBindingSource1;
-            this.cmbCategorias.DisplayMember = "Nombre";
             this.cmbCategorias.FormattingEnabled = true;
             this.cmbCategorias.Location = new System.Drawing.Point(62, 211);
             this.cmbCategorias.Name = "cmbCategorias";
@@ -251,16 +244,6 @@
             // productoTableAdapter
             // 
             this.productoTableAdapter.ClearBeforeFill = true;
-            // 
-            // productoBindingSource1
-            // 
-            this.productoBindingSource1.DataMember = "Producto";
-            this.productoBindingSource1.DataSource = this.miniMarketOrtzDataSet;
-            // 
-            // categoriaBindingSource1
-            // 
-            this.categoriaBindingSource1.DataMember = "Categoria";
-            this.categoriaBindingSource1.DataSource = this.miniMarketOrtzDataSet;
             // 
             // gestionProducto
             // 
@@ -285,11 +268,6 @@
             this.Text = "gestionProducto";
             this.Load += new System.EventHandler(this.gestionProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,16 +288,5 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.ComboBox cmbCategorias;
-        private MiniMarketOrtzDataSet miniMarketOrtzDataSet;
-        private System.Windows.Forms.BindingSource categoriaBindingSource;
-        private MiniMarketOrtzDataSetTableAdapters.CategoriaTableAdapter categoriaTableAdapter;
-        private System.Windows.Forms.BindingSource productoBindingSource;
-        private MiniMarketOrtzDataSetTableAdapters.ProductoTableAdapter productoTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProductoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoriaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource categoriaBindingSource1;
-        private System.Windows.Forms.BindingSource productoBindingSource1;
     }
 }

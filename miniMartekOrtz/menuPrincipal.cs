@@ -12,6 +12,9 @@ namespace miniMartekOrtz
 {
     public partial class menuPrincipal : Form
     {
+
+        
+
         public menuPrincipal()
         {
             InitializeComponent();

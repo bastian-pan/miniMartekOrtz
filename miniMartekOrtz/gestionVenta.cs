@@ -79,13 +79,6 @@ namespace miniMartekOrtz
 
                     }
 
-                    string delete = "DELETE FROM Producto WHERE Stock <= 0";
-
-                    using (SqlCommand cmd = new SqlCommand(delete, connection))
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-
                     MessageBox.Show("Venta registrada exitosamente.");
 
                     carrito.Clear();

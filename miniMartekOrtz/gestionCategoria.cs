@@ -33,40 +33,38 @@ namespace miniMartekOrtz
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string nombreCategoria = txtNombre.Text;
-            string descripcionCategoria = txtDescripcion.Text;
+            // Leer datos
+            string nombre = txtNombre.Text;
+            string descripcion = txtDescripcion.Text;
 
-            if (string.IsNullOrWhiteSpace(nombreCategoria) || string.IsNullOrWhiteSpace(descripcionCategoria)) 
+            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(descripcion))
             {
-                MessageBox.Show("Los campos son obligatorios.");
+                MessageBox.Show("Por favor ingrese un nombre y una descripción válidos.");
                 return;
             }
 
             
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-    
-            
-            string query = "INSERT INTO Categoria (Nombre, Descripcion) VALUES (@Nombre, @Descripcion)";
 
-            
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                try
                 {
+                    connection.Open();
+
+                    string query = "INSERT INTO Categoria (Nombre, Descripcion) VALUES (@Nombre, @Descripcion)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        
-                        command.Parameters.AddWithValue("@Nombre", nombreCategoria);
-                        command.Parameters.AddWithValue("@Descripcion", descripcionCategoria);
+                        command.Parameters.AddWithValue("@Nombre", nombre);
+                        command.Parameters.AddWithValue("@Descripcion", descripcion);
 
-                        connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
-
 
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Registro insertado exitosamente.");
                             this.categoriaTableAdapter.Fill(this.miniMarketOrtzDataSet.Categoria);
+
                             txtNombre.Clear();
                             txtDescripcion.Clear();
                         }
@@ -76,10 +74,10 @@ namespace miniMartekOrtz
                         }
                     }
                 }
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show($"Error de base de datos: {ex.Message}");
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
             }
         }
 

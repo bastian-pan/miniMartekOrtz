@@ -27,27 +27,29 @@ namespace miniMartekOrtz
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            // Leer datos 
             string nombre = txtNombre.Text;
-            string precioTexto = txtPrecio.Text;
-            string stockTexto = txtStock.Text;
+            decimal precio;
+            int stock;
 
-            if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(precioTexto) || string.IsNullOrWhiteSpace(stockTexto) || cmbCategorias.SelectedIndex == -1)
+            if (string.IsNullOrWhiteSpace(nombre) || !decimal.TryParse(txtPrecio.Text, out precio) || !int.TryParse(txtStock.Text, out stock) || cmbCategorias.SelectedValue == null)
             {
-                MessageBox.Show("Todos los campos son obligatorios.");
+                MessageBox.Show("Por favor ingrese datos válidos en todos los campos.");
                 return;
             }
 
-            decimal precio = decimal.Parse(precioTexto);
-            int stock = int.Parse(stockTexto);
-            int idCategoria = Convert.ToInt32(cmbCategorias.SelectedValue);
+            int idCategoria = (int)cmbCategorias.SelectedValue;
 
+            
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
-            string query = "INSERT INTO Producto (Nombre, Precio, Stock, IdCategoria) VALUES (@Nombre, @Precio, @Stock, @IdCategoria)";
 
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                try
                 {
+                    connection.Open();
+
+                    string query = "INSERT INTO Producto (Nombre, Precio, Stock, IdCategoria) VALUES (@Nombre, @Precio, @Stock, @IdCategoria)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@Nombre", nombre);
@@ -55,12 +57,11 @@ namespace miniMartekOrtz
                         command.Parameters.AddWithValue("@Stock", stock);
                         command.Parameters.AddWithValue("@IdCategoria", idCategoria);
 
-                        connection.Open();
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Producto registrado con éxito.");
+                            MessageBox.Show("Registro insertado exitosamente.");
                             this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet.Producto);
 
                             txtNombre.Clear();
@@ -70,16 +71,18 @@ namespace miniMartekOrtz
                         }
                         else
                         {
-                            MessageBox.Show("No se pudo registrar el producto.");
+                            MessageBox.Show("No se pudo insertar el registro.");
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
             }
         }
+
+
 
         private void gestionProducto_Load(object sender, EventArgs e)
         {

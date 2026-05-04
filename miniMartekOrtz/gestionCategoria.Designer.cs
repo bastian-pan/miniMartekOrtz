@@ -25,17 +25,17 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnBorrar = new System.Windows.Forms.Button();
-            this.miniMarketOrtzDataSet = new miniMartekOrtz.MiniMarketOrtzDataSet();
-            this.categoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoriaTableAdapter = new miniMartekOrtz.MiniMarketOrtzDataSetTableAdapters.CategoriaTableAdapter();
             this.idCategoriaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.miniMarketOrtzDataSet = new miniMartekOrtz.MiniMarketOrtzDataSet();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnBorrar = new System.Windows.Forms.Button();
+            this.categoriaTableAdapter = new miniMartekOrtz.MiniMarketOrtzDataSetTableAdapters.CategoriaTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -95,6 +95,7 @@
             this.btnVolver.Size = new System.Drawing.Size(64, 29);
             this.btnVolver.TabIndex = 3;
             this.btnVolver.Text = "Volver";
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
             // 
             // dataGridView1
             // 
@@ -109,6 +110,35 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(343, 260);
             this.dataGridView1.TabIndex = 2;
+            // 
+            // idCategoriaDataGridViewTextBoxColumn
+            // 
+            this.idCategoriaDataGridViewTextBoxColumn.DataPropertyName = "IdCategoria";
+            this.idCategoriaDataGridViewTextBoxColumn.HeaderText = "IdCategoria";
+            this.idCategoriaDataGridViewTextBoxColumn.Name = "idCategoriaDataGridViewTextBoxColumn";
+            this.idCategoriaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            // 
+            // categoriaBindingSource
+            // 
+            this.categoriaBindingSource.DataMember = "Categoria";
+            this.categoriaBindingSource.DataSource = this.miniMarketOrtzDataSet;
+            // 
+            // miniMarketOrtzDataSet
+            // 
+            this.miniMarketOrtzDataSet.DataSetName = "MiniMarketOrtzDataSet";
+            this.miniMarketOrtzDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnEditar
             // 
@@ -134,38 +164,9 @@
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = false;
             // 
-            // miniMarketOrtzDataSet
-            // 
-            this.miniMarketOrtzDataSet.DataSetName = "MiniMarketOrtzDataSet";
-            this.miniMarketOrtzDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // categoriaBindingSource
-            // 
-            this.categoriaBindingSource.DataMember = "Categoria";
-            this.categoriaBindingSource.DataSource = this.miniMarketOrtzDataSet;
-            // 
             // categoriaTableAdapter
             // 
             this.categoriaTableAdapter.ClearBeforeFill = true;
-            // 
-            // idCategoriaDataGridViewTextBoxColumn
-            // 
-            this.idCategoriaDataGridViewTextBoxColumn.DataPropertyName = "IdCategoria";
-            this.idCategoriaDataGridViewTextBoxColumn.HeaderText = "IdCategoria";
-            this.idCategoriaDataGridViewTextBoxColumn.Name = "idCategoriaDataGridViewTextBoxColumn";
-            this.idCategoriaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            // 
-            // descripcionDataGridViewTextBoxColumn
-            // 
-            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
             // 
             // gestionCategoria
             // 
@@ -185,8 +186,8 @@
             this.Text = "gestionCategoria";
             this.Load += new System.EventHandler(this.gestionCategoria_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

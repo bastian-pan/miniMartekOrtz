@@ -91,5 +91,11 @@ namespace miniMartekOrtz
 
 
         }
+
+        private void btnVolver_Click_1(object sender, EventArgs e)
+        {
+            this.menuPrincipal.Show();
+            this.Close();
+        }
     }
 }

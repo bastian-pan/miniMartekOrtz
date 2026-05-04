@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -41,7 +42,12 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtStock = new System.Windows.Forms.TextBox();
             this.cmbCategorias = new System.Windows.Forms.ComboBox();
+            this.miniMarketOrtzDataSet3 = new miniMartekOrtz.MiniMarketOrtzDataSet3();
+            this.categoriaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoriaTableAdapter = new miniMartekOrtz.MiniMarketOrtzDataSet3TableAdapters.CategoriaTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBorrar
@@ -88,6 +94,7 @@
             this.btnVolver.TabIndex = 14;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // btnAgregar
             // 
@@ -166,11 +173,26 @@
             // 
             // cmbCategorias
             // 
+            this.cmbCategorias.DataSource = this.categoriaBindingSource;
             this.cmbCategorias.FormattingEnabled = true;
             this.cmbCategorias.Location = new System.Drawing.Point(74, 210);
             this.cmbCategorias.Name = "cmbCategorias";
             this.cmbCategorias.Size = new System.Drawing.Size(104, 21);
             this.cmbCategorias.TabIndex = 23;
+            // 
+            // miniMarketOrtzDataSet3
+            // 
+            this.miniMarketOrtzDataSet3.DataSetName = "MiniMarketOrtzDataSet3";
+            this.miniMarketOrtzDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // categoriaBindingSource
+            // 
+            this.categoriaBindingSource.DataMember = "Categoria";
+            this.categoriaBindingSource.DataSource = this.miniMarketOrtzDataSet3;
+            // 
+            // categoriaTableAdapter
+            // 
+            this.categoriaTableAdapter.ClearBeforeFill = true;
             // 
             // gestionProducto
             // 
@@ -193,7 +215,10 @@
             this.Location = new System.Drawing.Point(15, 15);
             this.Name = "gestionProducto";
             this.Text = "gestionProducto";
+            this.Load += new System.EventHandler(this.gestionProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +239,8 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.ComboBox cmbCategorias;
+        private MiniMarketOrtzDataSet3 miniMarketOrtzDataSet3;
+        private System.Windows.Forms.BindingSource categoriaBindingSource;
+        private MiniMarketOrtzDataSet3TableAdapters.CategoriaTableAdapter categoriaTableAdapter;
     }
 }

@@ -95,5 +95,51 @@ namespace miniMartekOrtz
             this.menuPrincipal.Show();
             this.Close();
         }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            int id;
+            if (!int.TryParse(dataGridView1.CurrentRow.Cells["idCategoriaDataGridViewTextBoxColumn"].Value.ToString(), out id))
+            {
+                MessageBox.Show("Ingrese un ID valido para eliminar.");
+            }
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+
+                    connection.Open();
+                    string query = "DELETE FROM Categoria WHERE IdCategoria = @Id";
+                    using(SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Categoria Eliminada Exitosamente");
+                            this.categoriaTableAdapter.Fill(this.miniMarketOrtzDataSet.Categoria);
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("No se encontro un registro con ese ID.");
+                        }
+
+                    }
+
+
+                }
+
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+        }
     }
 }

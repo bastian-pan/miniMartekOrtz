@@ -26,6 +26,8 @@ namespace miniMartekOrtz
 
         private void gestionVenta_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet.venta' Puede moverla o quitarla según sea necesario.
+            this.ventaTableAdapter1.Fill(this.miniMarketOrtzDataSet.venta);
             // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet5.venta' Puede moverla o quitarla según sea necesario.
             this.ventaTableAdapter.Fill(this.miniMarketOrtzDataSet5.venta);
             // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet4.Producto' Puede moverla o quitarla según sea necesario.

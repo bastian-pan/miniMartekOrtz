@@ -101,10 +101,11 @@ namespace miniMartekOrtz
                         + neto.ToString("C") + "\nIVA: " + iva.ToString("C") +
                         "\nTotal: " + totalVenta.ToString("C"));
 
+                    this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet1.Producto);
                     carrito.Clear();
                     dgvCarrito.Rows.Clear();
 
-                    this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet1.Producto);
+                    
 
                 }
             }

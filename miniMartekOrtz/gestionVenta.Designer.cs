@@ -39,9 +39,8 @@
             this.productoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.miniMarketOrtzDataSet1 = new miniMartekOrtz.MiniMarketOrtzDataSet1();
             this.dgvVenta = new System.Windows.Forms.DataGridView();
-            this.idVentaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ventaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.miniMarketOrtzDataSet = new miniMartekOrtz.MiniMarketOrtzDataSet();
             this.ventaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.miniMarketOrtzDataSet5 = new miniMartekOrtz.MiniMarketOrtzDataSet5();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -57,9 +56,20 @@
             this.productoTableAdapter1 = new miniMartekOrtz.MiniMarketOrtzDataSet2TableAdapters.ProductoTableAdapter();
             this.productoTableAdapter2 = new miniMartekOrtz.MiniMarketOrtzDataSet4TableAdapters.ProductoTableAdapter();
             this.ventaTableAdapter = new miniMartekOrtz.MiniMarketOrtzDataSet5TableAdapters.ventaTableAdapter();
-            this.miniMarketOrtzDataSet = new miniMartekOrtz.MiniMarketOrtzDataSet();
-            this.ventaBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.ventaTableAdapter1 = new miniMartekOrtz.MiniMarketOrtzDataSetTableAdapters.ventaTableAdapter();
+            this.miniMarketOrtzDataSet6 = new miniMartekOrtz.MiniMarketOrtzDataSet6();
+            this.ventaBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.ventaTableAdapter2 = new miniMartekOrtz.MiniMarketOrtzDataSet6TableAdapters.ventaTableAdapter();
+            this.lblPrecio = new System.Windows.Forms.Label();
+            this.lblStock = new System.Windows.Forms.Label();
+            this.lblIVA = new System.Windows.Forms.Label();
+            this.miniMarketOrtzDataSet7 = new miniMartekOrtz.MiniMarketOrtzDataSet7();
+            this.ventaBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.ventaTableAdapter3 = new miniMartekOrtz.MiniMarketOrtzDataSet7TableAdapters.ventaTableAdapter();
+            this.idVentaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IVA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource1)).BeginInit();
@@ -69,10 +79,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource3)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbProducto
@@ -80,10 +94,12 @@
             this.cmbProducto.DataSource = this.productoBindingSource2;
             this.cmbProducto.DisplayMember = "Nombre";
             this.cmbProducto.FormattingEnabled = true;
-            this.cmbProducto.Location = new System.Drawing.Point(107, 26);
+            this.cmbProducto.Location = new System.Drawing.Point(107, 5);
             this.cmbProducto.Name = "cmbProducto";
             this.cmbProducto.Size = new System.Drawing.Size(104, 21);
             this.cmbProducto.TabIndex = 0;
+            this.cmbProducto.ValueMember = "IdProducto";
+            this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectedIndexChanged);
             // 
             // productoBindingSource2
             // 
@@ -107,7 +123,7 @@
             // 
             // nudCantidad
             // 
-            this.nudCantidad.Location = new System.Drawing.Point(371, 30);
+            this.nudCantidad.Location = new System.Drawing.Point(454, 6);
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.Size = new System.Drawing.Size(120, 20);
             this.nudCantidad.TabIndex = 1;
@@ -137,31 +153,23 @@
             this.dgvVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idVentaDataGridViewTextBoxColumn,
             this.fechaDataGridViewTextBoxColumn,
-            this.totalDataGridViewTextBoxColumn});
-            this.dgvVenta.DataSource = this.ventaBindingSource1;
+            this.totalDataGridViewTextBoxColumn,
+            this.IVA});
+            this.dgvVenta.DataSource = this.ventaBindingSource3;
             this.dgvVenta.Location = new System.Drawing.Point(332, 61);
             this.dgvVenta.Name = "dgvVenta";
             this.dgvVenta.Size = new System.Drawing.Size(345, 170);
             this.dgvVenta.TabIndex = 3;
             // 
-            // idVentaDataGridViewTextBoxColumn
+            // ventaBindingSource1
             // 
-            this.idVentaDataGridViewTextBoxColumn.DataPropertyName = "IdVenta";
-            this.idVentaDataGridViewTextBoxColumn.HeaderText = "IdVenta";
-            this.idVentaDataGridViewTextBoxColumn.Name = "idVentaDataGridViewTextBoxColumn";
-            this.idVentaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ventaBindingSource1.DataMember = "venta";
+            this.ventaBindingSource1.DataSource = this.miniMarketOrtzDataSet;
             // 
-            // fechaDataGridViewTextBoxColumn
+            // miniMarketOrtzDataSet
             // 
-            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
-            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
-            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
-            // 
-            // totalDataGridViewTextBoxColumn
-            // 
-            this.totalDataGridViewTextBoxColumn.DataPropertyName = "Total";
-            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
-            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            this.miniMarketOrtzDataSet.DataSetName = "MiniMarketOrtzDataSet";
+            this.miniMarketOrtzDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ventaBindingSource
             // 
@@ -202,7 +210,7 @@
             // 
             this.lblProducto.AutoSize = true;
             this.lblProducto.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProducto.Location = new System.Drawing.Point(35, 30);
+            this.lblProducto.Location = new System.Drawing.Point(35, 9);
             this.lblProducto.Name = "lblProducto";
             this.lblProducto.Size = new System.Drawing.Size(66, 17);
             this.lblProducto.TabIndex = 6;
@@ -212,7 +220,7 @@
             // 
             this.lblCantidad.AutoSize = true;
             this.lblCantidad.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.Location = new System.Drawing.Point(298, 30);
+            this.lblCantidad.Location = new System.Drawing.Point(360, 9);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(67, 17);
             this.lblCantidad.TabIndex = 7;
@@ -302,25 +310,95 @@
             // 
             this.ventaTableAdapter.ClearBeforeFill = true;
             // 
-            // miniMarketOrtzDataSet
-            // 
-            this.miniMarketOrtzDataSet.DataSetName = "MiniMarketOrtzDataSet";
-            this.miniMarketOrtzDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ventaBindingSource1
-            // 
-            this.ventaBindingSource1.DataMember = "venta";
-            this.ventaBindingSource1.DataSource = this.miniMarketOrtzDataSet;
-            // 
             // ventaTableAdapter1
             // 
             this.ventaTableAdapter1.ClearBeforeFill = true;
+            // 
+            // miniMarketOrtzDataSet6
+            // 
+            this.miniMarketOrtzDataSet6.DataSetName = "MiniMarketOrtzDataSet6";
+            this.miniMarketOrtzDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ventaBindingSource2
+            // 
+            this.ventaBindingSource2.DataMember = "venta";
+            this.ventaBindingSource2.DataSource = this.miniMarketOrtzDataSet6;
+            // 
+            // ventaTableAdapter2
+            // 
+            this.ventaTableAdapter2.ClearBeforeFill = true;
+            // 
+            // lblPrecio
+            // 
+            this.lblPrecio.AutoSize = true;
+            this.lblPrecio.Location = new System.Drawing.Point(35, 36);
+            this.lblPrecio.Name = "lblPrecio";
+            this.lblPrecio.Size = new System.Drawing.Size(0, 13);
+            this.lblPrecio.TabIndex = 13;
+            // 
+            // lblStock
+            // 
+            this.lblStock.AutoSize = true;
+            this.lblStock.Location = new System.Drawing.Point(145, 36);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(0, 13);
+            this.lblStock.TabIndex = 14;
+            // 
+            // lblIVA
+            // 
+            this.lblIVA.AutoSize = true;
+            this.lblIVA.Location = new System.Drawing.Point(274, 36);
+            this.lblIVA.Name = "lblIVA";
+            this.lblIVA.Size = new System.Drawing.Size(0, 13);
+            this.lblIVA.TabIndex = 15;
+            // 
+            // miniMarketOrtzDataSet7
+            // 
+            this.miniMarketOrtzDataSet7.DataSetName = "MiniMarketOrtzDataSet7";
+            this.miniMarketOrtzDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ventaBindingSource3
+            // 
+            this.ventaBindingSource3.DataMember = "venta";
+            this.ventaBindingSource3.DataSource = this.miniMarketOrtzDataSet7;
+            // 
+            // ventaTableAdapter3
+            // 
+            this.ventaTableAdapter3.ClearBeforeFill = true;
+            // 
+            // idVentaDataGridViewTextBoxColumn
+            // 
+            this.idVentaDataGridViewTextBoxColumn.DataPropertyName = "IdVenta";
+            this.idVentaDataGridViewTextBoxColumn.HeaderText = "IdVenta";
+            this.idVentaDataGridViewTextBoxColumn.Name = "idVentaDataGridViewTextBoxColumn";
+            this.idVentaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fechaDataGridViewTextBoxColumn
+            // 
+            this.fechaDataGridViewTextBoxColumn.DataPropertyName = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.HeaderText = "Fecha";
+            this.fechaDataGridViewTextBoxColumn.Name = "fechaDataGridViewTextBoxColumn";
+            // 
+            // totalDataGridViewTextBoxColumn
+            // 
+            this.totalDataGridViewTextBoxColumn.DataPropertyName = "Total";
+            this.totalDataGridViewTextBoxColumn.HeaderText = "Total";
+            this.totalDataGridViewTextBoxColumn.Name = "totalDataGridViewTextBoxColumn";
+            // 
+            // IVA
+            // 
+            this.IVA.DataPropertyName = "IVA";
+            this.IVA.HeaderText = "IVA";
+            this.IVA.Name = "IVA";
             // 
             // gestionVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 383);
+            this.Controls.Add(this.lblIVA);
+            this.Controls.Add(this.lblStock);
+            this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.btnCancelar);
@@ -346,10 +424,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ventaBindingSource3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,11 +464,21 @@
         private MiniMarketOrtzDataSet5 miniMarketOrtzDataSet5;
         private System.Windows.Forms.BindingSource ventaBindingSource;
         private MiniMarketOrtzDataSet5TableAdapters.ventaTableAdapter ventaTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idVentaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
         private MiniMarketOrtzDataSet miniMarketOrtzDataSet;
         private System.Windows.Forms.BindingSource ventaBindingSource1;
         private MiniMarketOrtzDataSetTableAdapters.ventaTableAdapter ventaTableAdapter1;
+        private MiniMarketOrtzDataSet6 miniMarketOrtzDataSet6;
+        private System.Windows.Forms.BindingSource ventaBindingSource2;
+        private MiniMarketOrtzDataSet6TableAdapters.ventaTableAdapter ventaTableAdapter2;
+        private System.Windows.Forms.Label lblPrecio;
+        private System.Windows.Forms.Label lblStock;
+        private System.Windows.Forms.Label lblIVA;
+        private MiniMarketOrtzDataSet7 miniMarketOrtzDataSet7;
+        private System.Windows.Forms.BindingSource ventaBindingSource3;
+        private MiniMarketOrtzDataSet7TableAdapters.ventaTableAdapter ventaTableAdapter3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idVentaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IVA;
     }
 }

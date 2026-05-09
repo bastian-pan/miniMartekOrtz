@@ -123,6 +123,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MiniMarketOrtzDataSet5.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MiniMarketOrtzDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MiniMarketOrtzDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MiniMarketOrtzDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MiniMarketOrtzDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MiniMarketOrtzDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MiniMarketOrtzDataSet8.xsd</DependentUpon>
+    </Compile>
     <Compile Include="modelos\Categoria.cs" />
     <Compile Include="modelos\Producto.cs" />
     <Compile Include="modelos\Venta.cs" />
@@ -207,6 +222,39 @@
     </None>
     <None Include="MiniMarketOrtzDataSet5.xss">
       <DependentUpon>MiniMarketOrtzDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="MiniMarketOrtzDataSet6.xsc">
+      <DependentUpon>MiniMarketOrtzDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="MiniMarketOrtzDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MiniMarketOrtzDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MiniMarketOrtzDataSet6.xss">
+      <DependentUpon>MiniMarketOrtzDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="MiniMarketOrtzDataSet7.xsc">
+      <DependentUpon>MiniMarketOrtzDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="MiniMarketOrtzDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MiniMarketOrtzDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MiniMarketOrtzDataSet7.xss">
+      <DependentUpon>MiniMarketOrtzDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="MiniMarketOrtzDataSet8.xsc">
+      <DependentUpon>MiniMarketOrtzDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="MiniMarketOrtzDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MiniMarketOrtzDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MiniMarketOrtzDataSet8.xss">
+      <DependentUpon>MiniMarketOrtzDataSet8.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\miniMartekOrtz.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\miniMartekOrtz.Properties.Settings.datasource" />

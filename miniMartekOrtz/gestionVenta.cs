@@ -18,6 +18,7 @@ namespace miniMartekOrtz
 
         List<DetalleVenta> carrito = new List<DetalleVenta>();
 
+
         public gestionVenta(Form menu)
         {
             InitializeComponent();
@@ -26,6 +27,10 @@ namespace miniMartekOrtz
 
         private void gestionVenta_Load(object sender, EventArgs e)
         {
+            // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet7.venta' Puede moverla o quitarla según sea necesario.
+            this.ventaTableAdapter3.Fill(this.miniMarketOrtzDataSet7.venta);
+            // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet6.venta' Puede moverla o quitarla según sea necesario.
+            this.ventaTableAdapter2.Fill(this.miniMarketOrtzDataSet6.venta);
             // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet.venta' Puede moverla o quitarla según sea necesario.
             this.ventaTableAdapter1.Fill(this.miniMarketOrtzDataSet.venta);
             // TODO: esta línea de código carga datos en la tabla 'miniMarketOrtzDataSet5.venta' Puede moverla o quitarla según sea necesario.
@@ -97,7 +102,7 @@ namespace miniMartekOrtz
 
 
 
-                    MessageBox.Show("Venta registrada exitosamente.\nNeto: " 
+                    MessageBox.Show("Venta registrada exitosamente.\nNeto: "
                         + neto.ToString("C") + "\nIVA: " + iva.ToString("C") +
                         "\nTotal: " + totalVenta.ToString("C"));
 
@@ -105,7 +110,7 @@ namespace miniMartekOrtz
                     carrito.Clear();
                     dgvCarrito.Rows.Clear();
 
-                    
+
 
                 }
             }
@@ -189,6 +194,25 @@ namespace miniMartekOrtz
         {
             carrito.Clear();
             dgvCarrito.Rows.Clear();
+        }
+
+        private void cmbProducto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbProducto.SelectedIndex == -1)
+                return;
+
+            DataRowView row = (DataRowView)cmbProducto.SelectedItem;
+
+            decimal precio = (decimal)row["Precio"];
+            int stock = (int)row["Stock"];
+
+            decimal neto = precio / 1.19m;
+            decimal iva = precio - neto;
+
+            lblPrecio.Text = "Precio: $" + precio.ToString("0");
+            lblStock.Text = "Stock: " + stock;
+            lblIVA.Text = "IVA: $" + iva.ToString("0");
+
         }
     }
 }

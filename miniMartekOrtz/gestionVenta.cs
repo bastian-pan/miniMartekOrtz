@@ -18,6 +18,8 @@ namespace miniMartekOrtz
 
         List<DetalleVenta> carrito = new List<DetalleVenta>();
 
+        int indexEditar = -1;
+
 
         public gestionVenta(Form menu)
         {
@@ -68,7 +70,11 @@ namespace miniMartekOrtz
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
             decimal totalVenta = carrito.Sum(item => item.Cantidad * item.PrecioUnitario);
 
-            string queryVenta = "INSERT INTO Venta (Fecha, Total) VALUES (@Fecha, @Total); SELECT SCOPE_IDENTITY();";
+            decimal neto = totalVenta / 1.19m;
+            decimal iva = totalVenta - neto;
+
+
+            string queryVenta = "INSERT INTO Venta (Fecha, Total, IVA) VALUES (@Fecha, @Total, @IVA); SELECT SCOPE_IDENTITY();";
 
             try
             {
@@ -80,6 +86,9 @@ namespace miniMartekOrtz
                     {
                         cmd.Parameters.AddWithValue("@Fecha", DateTime.Now);
                         cmd.Parameters.AddWithValue("@Total", totalVenta);
+                        cmd.Parameters.AddWithValue("@IVA", iva);
+
+
                         cmd.ExecuteNonQuery();
                     }
 
@@ -97,20 +106,15 @@ namespace miniMartekOrtz
 
                     }
 
-                    decimal neto = totalVenta / 1.19m;
-                    decimal iva = totalVenta - neto;
-
-
-
                     MessageBox.Show("Venta registrada exitosamente.\nNeto: "
                         + neto.ToString("C") + "\nIVA: " + iva.ToString("C") +
                         "\nTotal: " + totalVenta.ToString("C"));
 
-                    this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet1.Producto);
                     carrito.Clear();
                     dgvCarrito.Rows.Clear();
 
-
+                    this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet1.Producto);
+                    this.ventaTableAdapter3.Fill(this.miniMarketOrtzDataSet7.venta);
 
                 }
             }
@@ -194,6 +198,8 @@ namespace miniMartekOrtz
         {
             carrito.Clear();
             dgvCarrito.Rows.Clear();
+
+            MessageBox.Show("Venta cancelada.");
         }
 
         private void cmbProducto_SelectedIndexChanged(object sender, EventArgs e)
@@ -213,6 +219,170 @@ namespace miniMartekOrtz
             lblStock.Text = "Stock: " + stock;
             lblIVA.Text = "IVA: $" + iva.ToString("0");
 
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (indexEditar < 0)
+            {
+                MessageBox.Show("Seleccione una fila para editar.");
+                return;
+            }
+            if (cmbProducto.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccione un producto.");
+                return;
+            }
+
+            DataRowView row = (DataRowView)cmbProducto.SelectedItem;
+
+            int idProducto = Convert.ToInt32(row["IdProducto"]);
+            string nombreProducto = row["Nombre"].ToString();
+            decimal precio = Convert.ToDecimal(row["Precio"]);
+            int stock = Convert.ToInt32(row["Stock"]);
+
+            int cantidad = (int)nudCantidad.Value;
+
+            if (cantidad <= 0)
+            {
+                MessageBox.Show("Cantidad inválida.");
+                return;
+            }
+
+            if (cantidad > stock)
+            {
+                MessageBox.Show("Stock insuficiente.");
+                return;
+            }
+
+
+            carrito[indexEditar].IdProducto = idProducto;
+            carrito[indexEditar].Cantidad = cantidad;
+            carrito[indexEditar].PrecioUnitario = precio;
+
+            dgvCarrito.Rows[indexEditar].SetValues(nombreProducto, cantidad, precio, cantidad * precio);
+
+
+            MessageBox.Show("Producto editado correctamente.");
+
+            indexEditar = -1;
+
+            cmbProducto.SelectedIndex = -1;
+            nudCantidad.Value = 1;
+
+        }
+
+        private void dgvCarrito_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            indexEditar = e.RowIndex;
+
+            string nombreProducto = dgvCarrito.Rows[e.RowIndex].Cells["Producto"].Value.ToString();
+
+            foreach (DataRowView item in cmbProducto.Items)
+            {
+                if (item["Nombre"].ToString() == nombreProducto)
+                {
+                    cmbProducto.SelectedItem = item;
+                    break;
+                }
+            }
+            nudCantidad.Value = Convert.ToInt32(dgvCarrito.Rows[e.RowIndex].Cells[1].Value);
+        }
+
+
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgvVenta.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una venta para eliminar.");
+                return;
+            }
+
+            int idVenta = Convert.ToInt32(dgvVenta.CurrentRow.Cells[0].Value);
+
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            string query = "DELETE FROM Venta WHERE IdVenta = @IdVenta";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@IdVenta", idVenta);
+
+                        
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Venta eliminada exitosamente.");
+
+                this.ventaTableAdapter3.Fill(this.miniMarketOrtzDataSet7.venta);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar la venta: " + ex.Message);
+            }
+        }
+
+        private void btnActualizarVenta_Click(object sender, EventArgs e)
+        {
+            if (dgvVenta.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione una venta para actualizar.");
+                return;
+            }
+
+            int idVenta = Convert.ToInt32(dgvVenta.CurrentRow.Cells[0].Value);
+
+            decimal nuevoTotal = decimal.Parse(txtTotalEditar.Text);
+
+            decimal nuevoIVA = nuevoTotal - (nuevoTotal / 1.19m);
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            string query = "UPDATE Venta SET Total = @Total, IVA = @IVA WHERE IdVenta = @IdVenta";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@Total", nuevoTotal);
+                        cmd.Parameters.AddWithValue("@IVA", nuevoIVA);
+                        cmd.Parameters.AddWithValue("@IdVenta", idVenta);
+
+                        
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("Venta actualizada exitosamente.");
+                this.ventaTableAdapter3.Fill(this.miniMarketOrtzDataSet7.venta);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar la venta: " + ex.Message);
+            }
+        }
+        private void dgvVenta_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            txtTotalEditar.Text =
+                dgvVenta.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
     }
 }

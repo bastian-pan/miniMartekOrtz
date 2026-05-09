@@ -70,6 +70,9 @@
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IVA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnActualizarVenta = new System.Windows.Forms.Button();
+            this.txtTotalEditar = new System.Windows.Forms.TextBox();
+            this.lblActualizar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.miniMarketOrtzDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productoBindingSource1)).BeginInit();
@@ -135,6 +138,7 @@
             this.dgvCarrito.Name = "dgvCarrito";
             this.dgvCarrito.Size = new System.Drawing.Size(299, 170);
             this.dgvCarrito.TabIndex = 2;
+            this.dgvCarrito.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarrito_CellContentClick);
             // 
             // productoBindingSource
             // 
@@ -160,6 +164,7 @@
             this.dgvVenta.Name = "dgvVenta";
             this.dgvVenta.Size = new System.Drawing.Size(345, 170);
             this.dgvVenta.TabIndex = 3;
+            this.dgvVenta.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVenta_CellContentClick);
             // 
             // ventaBindingSource1
             // 
@@ -252,6 +257,7 @@
             this.btnEditar.TabIndex = 9;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnCancelar
             // 
@@ -293,6 +299,7 @@
             this.btnEliminar.TabIndex = 12;
             this.btnEliminar.Text = "Eliminar venta";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // productoTableAdapter
             // 
@@ -391,11 +398,45 @@
             this.IVA.HeaderText = "IVA";
             this.IVA.Name = "IVA";
             // 
+            // btnActualizarVenta
+            // 
+            this.btnActualizarVenta.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnActualizarVenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarVenta.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizarVenta.ForeColor = System.Drawing.Color.White;
+            this.btnActualizarVenta.Location = new System.Drawing.Point(571, 251);
+            this.btnActualizarVenta.Name = "btnActualizarVenta";
+            this.btnActualizarVenta.Size = new System.Drawing.Size(106, 49);
+            this.btnActualizarVenta.TabIndex = 16;
+            this.btnActualizarVenta.Text = "Actualizar venta";
+            this.btnActualizarVenta.UseVisualStyleBackColor = false;
+            this.btnActualizarVenta.Click += new System.EventHandler(this.btnActualizarVenta_Click);
+            // 
+            // txtTotalEditar
+            // 
+            this.txtTotalEditar.Location = new System.Drawing.Point(454, 36);
+            this.txtTotalEditar.Name = "txtTotalEditar";
+            this.txtTotalEditar.Size = new System.Drawing.Size(120, 20);
+            this.txtTotalEditar.TabIndex = 17;
+            // 
+            // lblActualizar
+            // 
+            this.lblActualizar.AutoSize = true;
+            this.lblActualizar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblActualizar.Location = new System.Drawing.Point(360, 34);
+            this.lblActualizar.Name = "lblActualizar";
+            this.lblActualizar.Size = new System.Drawing.Size(71, 17);
+            this.lblActualizar.TabIndex = 18;
+            this.lblActualizar.Text = "Actualizar:";
+            // 
             // gestionVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(701, 383);
+            this.Controls.Add(this.lblActualizar);
+            this.Controls.Add(this.txtTotalEditar);
+            this.Controls.Add(this.btnActualizarVenta);
             this.Controls.Add(this.lblIVA);
             this.Controls.Add(this.lblStock);
             this.Controls.Add(this.lblPrecio);
@@ -480,5 +521,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IVA;
+        private System.Windows.Forms.Button btnActualizarVenta;
+        private System.Windows.Forms.TextBox txtTotalEditar;
+        private System.Windows.Forms.Label lblActualizar;
     }
 }

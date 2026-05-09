@@ -141,5 +141,67 @@ namespace miniMartekOrtz
                 }
             }
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                txtNombre.Text = dataGridView1.CurrentRow.Cells["nombreDataGridViewTextBoxColumn"].Value.ToString();
+                txtDescripcion.Text = dataGridView1.CurrentRow.Cells["descripcionDataGridViewTextBoxColumn"].Value.ToString();
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            int id;
+            string nombre = txtNombre.Text;
+            string descripcion = txtDescripcion.Text;
+
+            if (dataGridView1.CurrentRow == null ||
+                !int.TryParse(dataGridView1.CurrentRow.Cells["idCategoriaDataGridViewTextBoxColumn"].Value.ToString(), out id) ||
+                string.IsNullOrWhiteSpace(nombre) ||
+                string.IsNullOrWhiteSpace(descripcion))
+            {
+                MessageBox.Show("Por favor seleccione una categoría y complete todos los campos.");
+                return;
+            }
+
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE Categoria SET Nombre = @Nombre, Descripcion = @Descripcion WHERE IdCategoria = @Id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Nombre", nombre);
+                        command.Parameters.AddWithValue("@Descripcion", descripcion);
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Registro actualizado exitosamente.");
+                            this.categoriaTableAdapter.Fill(this.miniMarketOrtzDataSet.Categoria);
+
+                            txtNombre.Clear();
+                            txtDescripcion.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el registro para actualizar.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+        }
     }
 }

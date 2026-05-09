@@ -27,7 +27,6 @@ namespace miniMartekOrtz
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Leer datos 
             string nombre = txtNombre.Text;
             decimal precio;
             int stock;
@@ -39,8 +38,6 @@ namespace miniMartekOrtz
             }
 
             int idCategoria = (int)cmbCategorias.SelectedValue;
-
-            
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -48,7 +45,6 @@ namespace miniMartekOrtz
                 try
                 {
                     connection.Open();
-
                     string query = "INSERT INTO Producto (Nombre, Precio, Stock, IdCategoria) VALUES (@Nombre, @Precio, @Stock, @IdCategoria)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -82,8 +78,6 @@ namespace miniMartekOrtz
             }
         }
 
-
-
         private void gestionProducto_Load(object sender, EventArgs e)
         {
             this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet.Producto);
@@ -98,48 +92,109 @@ namespace miniMartekOrtz
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
+            int id;
+            if (dataGridView1.CurrentRow == null || !int.TryParse(dataGridView1.CurrentRow.Cells["idProductoDataGridViewTextBoxColumn"].Value.ToString(), out id))
             {
-                int id;
-                if (!int.TryParse(dataGridView1.CurrentRow.Cells["idProductoDataGridViewTextBoxColumn"].Value.ToString(), out id))
-                {
-                    MessageBox.Show("Ingrese un ID valido para eliminar.");
-                }
+                MessageBox.Show("Seleccione un registro válido para eliminar.");
+                return;
+            }
 
-                string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
                 {
-                    try
+                    connection.Open();
+                    string query = "DELETE FROM Producto WHERE IdProducto = @Id";
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.Parameters.AddWithValue("@Id", id);
+                        int rowsAffected = command.ExecuteNonQuery();
 
-                        connection.Open();
-                        string query = "DELETE FROM Producto WHERE IdProducto = @Id";
-                        using (SqlCommand command = new SqlCommand(query, connection))
+                        if (rowsAffected > 0)
                         {
-                            command.Parameters.AddWithValue("@Id", id);
-
-                            int rowsAffected = command.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Categoria Eliminada Exitosamente");
-                                this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet.Producto);
-                            }
-
-                            else
-                            {
-                                MessageBox.Show("No se encontro un registro con ese ID.");
-                            }
-
+                            MessageBox.Show("Producto Eliminado Exitosamente");
+                            this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet.Producto);
                         }
-
-
+                        else
+                        {
+                            MessageBox.Show("No se encontró un registro con ese ID.");
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                }
+            }
+        }
 
-                    catch (Exception ex)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                txtNombre.Text = dataGridView1.CurrentRow.Cells["nombreDataGridViewTextBoxColumn"].Value.ToString();
+                txtPrecio.Text = dataGridView1.CurrentRow.Cells["precioDataGridViewTextBoxColumn"].Value.ToString();
+
+                // Cambio clave: Usamos "Stock" porque así sale en tu ventana de Propiedades
+                txtStock.Text = dataGridView1.CurrentRow.Cells["Stock"].Value.ToString();
+
+                cmbCategorias.SelectedValue = dataGridView1.CurrentRow.Cells["idCategoriaDataGridViewTextBoxColumn"].Value;
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            int id, stock;
+            decimal precio;
+            string nombre = txtNombre.Text;
+
+            if (dataGridView1.CurrentRow == null ||
+                !int.TryParse(dataGridView1.CurrentRow.Cells["idProductoDataGridViewTextBoxColumn"].Value.ToString(), out id) ||
+                string.IsNullOrWhiteSpace(nombre) ||
+                !decimal.TryParse(txtPrecio.Text, out precio) ||
+                !int.TryParse(txtStock.Text, out stock) ||
+                cmbCategorias.SelectedValue == null)
+            {
+                MessageBox.Show("Por favor seleccione un registro y complete todos los campos correctamente.");
+                return;
+            }
+
+            int idCategoria = (int)cmbCategorias.SelectedValue;
+            string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["conexion"].ConnectionString;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "UPDATE Producto SET Nombre = @Nombre, Precio = @Precio, Stock = @Stock, IdCategoria = @IdCategoria WHERE IdProducto = @Id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        MessageBox.Show($"Error: {ex.Message}");
+                        command.Parameters.AddWithValue("@Nombre", nombre);
+                        command.Parameters.AddWithValue("@Precio", precio);
+                        command.Parameters.AddWithValue("@Stock", stock);
+                        command.Parameters.AddWithValue("@IdCategoria", idCategoria);
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Registro actualizado exitosamente.");
+                            this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet.Producto);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el registro para actualizar.");
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
                 }
             }
         }

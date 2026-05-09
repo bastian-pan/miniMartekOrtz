@@ -127,6 +127,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::miniMartekOrtz.Properties.Resources.logo;
             this.pictureBox1.Location = new System.Drawing.Point(345, -7);
             this.pictureBox1.Name = "pictureBox1";
@@ -147,8 +148,8 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "menuPrincipal";
             this.Text = "menuPrincipal";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();

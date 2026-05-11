@@ -153,20 +153,43 @@ namespace miniMartekOrtz
                 return;
             }
 
-            if (cantidad > stock)
+            var productoExistente = carrito
+                .FirstOrDefault(x => x.IdProducto == idProducto);
+
+            if (productoExistente != null)
             {
-                MessageBox.Show("Stock insuficiente.");
-                return;
+                int nuevaCantidad = productoExistente.Cantidad + cantidad;
+
+                if (nuevaCantidad > stock)
+                {
+                    MessageBox.Show("Stock insuficiente.");
+                    return;
+                }
+
+                productoExistente.Cantidad = nuevaCantidad;
+
+                int fila = carrito.IndexOf(productoExistente);
+
+                dgvCarrito.Rows[fila].Cells[1].Value = nuevaCantidad;
+                dgvCarrito.Rows[fila].Cells[3].Value =
+                    nuevaCantidad * precio;
             }
-
-            carrito.Add(new DetalleVenta
+            else
             {
-                IdProducto = idProducto,
-                Cantidad = cantidad,
-                PrecioUnitario = precio
-            });
+                carrito.Add(new DetalleVenta
+                {
+                    IdProducto = idProducto,
+                    Cantidad = cantidad,
+                    PrecioUnitario = precio
+                });
 
-            dgvCarrito.Rows.Add(nombre, cantidad, precio, cantidad * precio);
+                dgvCarrito.Rows.Add(
+                    nombre,
+                    cantidad,
+                    precio,
+                    cantidad * precio
+                );
+            }
 
             // reset
             cmbProducto.SelectedIndex = -1;

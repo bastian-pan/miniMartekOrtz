@@ -48,6 +48,7 @@ namespace miniMartekOrtz
             dgvCarrito.Columns.Add("Producto", "Producto");
             dgvCarrito.Columns.Add("Cantidad", "Cantidad");
             dgvCarrito.Columns.Add("Precio", "Precio");
+            dgvCarrito.Columns.Add("IVA", "IVA");
             dgvCarrito.Columns.Add("Subtotal", "Subtotal");
 
             dgvCarrito.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -114,8 +115,12 @@ namespace miniMartekOrtz
                     dgvCarrito.Rows.Clear();
 
                     this.productoTableAdapter.Fill(this.miniMarketOrtzDataSet1.Producto);
-                    this.ventaTableAdapter3.Fill(this.miniMarketOrtzDataSet7.venta);
 
+                    lblStock.Text = "Stock: 0";
+                    lblPrecio.Text = "Precio: $0";
+                    lblIVA.Text = "IVA: $0";
+
+                    this.ventaTableAdapter3.Fill(this.miniMarketOrtzDataSet7.venta);
                 }
             }
 
@@ -170,9 +175,12 @@ namespace miniMartekOrtz
 
                 int fila = carrito.IndexOf(productoExistente);
 
+                decimal subtotal = nuevaCantidad * precio;
+                decimal iva = Math.Round(subtotal - (subtotal / 1.19m), 2);
+
                 dgvCarrito.Rows[fila].Cells[1].Value = nuevaCantidad;
-                dgvCarrito.Rows[fila].Cells[3].Value =
-                    nuevaCantidad * precio;
+                dgvCarrito.Rows[fila].Cells[3].Value = iva;
+                dgvCarrito.Rows[fila].Cells[4].Value = subtotal;
             }
             else
             {
@@ -183,12 +191,17 @@ namespace miniMartekOrtz
                     PrecioUnitario = precio
                 });
 
+                decimal subtotal = cantidad * precio;
+                decimal iva = Math.Round(subtotal - (subtotal / 1.19m), 2);
+
                 dgvCarrito.Rows.Add(
                     nombre,
                     cantidad,
                     precio,
+                    iva,
                     cantidad * precio
                 );
+                MessageBox.Show("Producto agregado.");
             }
 
             // reset
@@ -211,6 +224,9 @@ namespace miniMartekOrtz
                 MessageBox.Show("Error al eliminar: índice inválido.");
                 return;
             }
+            string nombreProduc = dgvCarrito.Rows[fila].Cells[0].Value.ToString();
+
+            MessageBox.Show("Producto: " + nombreProduc +" eliminado correctamente.");
 
             carrito.RemoveAt(fila);
             dgvCarrito.Rows.RemoveAt(fila);
@@ -283,7 +299,10 @@ namespace miniMartekOrtz
             carrito[indexEditar].Cantidad = cantidad;
             carrito[indexEditar].PrecioUnitario = precio;
 
-            dgvCarrito.Rows[indexEditar].SetValues(nombreProducto, cantidad, precio, cantidad * precio);
+            decimal subtotal = cantidad * precio;
+            decimal iva = Math.Round(subtotal - (subtotal / 1.19m), 2);
+
+            dgvCarrito.Rows[indexEditar].SetValues(nombreProducto, cantidad, precio, iva, cantidad * precio);
 
 
             MessageBox.Show("Producto editado correctamente.");
